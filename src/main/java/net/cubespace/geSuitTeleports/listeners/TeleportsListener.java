@@ -16,7 +16,7 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 public class TeleportsListener implements Listener {
-	
+
 	@EventHandler
 	public void playerConnect (PlayerJoinEvent e){
 		if(TeleportsManager.pendingTeleports.containsKey(e.getPlayer().getName())){
@@ -28,14 +28,14 @@ public class TeleportsListener implements Listener {
 			}
 			TeleportsManager.ignoreTeleport.add(e.getPlayer());
 			e.getPlayer().teleport(t);
-			
+
 		}else if (TeleportsManager.pendingTeleportLocations.containsKey(e.getPlayer().getName())){
 			Location l = TeleportsManager.pendingTeleportLocations.get(e.getPlayer().getName());
 			TeleportsManager.ignoreTeleport.add(e.getPlayer());
 			e.getPlayer().teleport(l);
 		}
 	}
-	
+
 	@EventHandler
 	public void playerTeleport(PlayerTeleportEvent e){
 		if(e.isCancelled()){
@@ -48,24 +48,24 @@ public class TeleportsListener implements Listener {
 			TeleportsManager.ignoreTeleport.remove(e.getPlayer());
 			return;
 		}
-		TeleportsManager.sendTeleportBackLocation(e.getPlayer(), false);	
+		TeleportsManager.sendTeleportBackLocation(e.getPlayer(), false);
 	}
-	
+
 	@EventHandler
 	public void playerLeave(PlayerQuitEvent e){
 		boolean empty = false;
-		if(Bukkit.getOnlinePlayers().length==1){
+		if(Bukkit.getOnlinePlayers().size() == 1){
 			empty = true;
 		}
-		TeleportsManager.sendTeleportBackLocation(e.getPlayer(), empty);	
+		TeleportsManager.sendTeleportBackLocation(e.getPlayer(), empty);
 	}
-	
+
 	@EventHandler
 	public void playerDeath(PlayerDeathEvent e){
 		TeleportsManager.sendDeathBackLocation(e.getEntity());
         TeleportsManager.ignoreTeleport.add(e.getEntity());
 	}
-	
+
 
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void setFormatChat(final PlayerLoginEvent e) {
@@ -80,5 +80,5 @@ public class TeleportsListener implements Listener {
 		}
 	}
 
-	
+
 }

@@ -7,26 +7,18 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
+import java.util.*;
 
 public class LocationUtil {
     // The player can stand inside these materials
-    public static final Set<Integer> HOLLOW_MATERIALS = new HashSet<Integer>();
+    private static final Set<Material> HOLLOW_MATERIALS = new HashSet<>();
 
-    public static class Vector3D
-    {
+    public static class Vector3D {
         public int x;
         public int y;
         public int z;
 
-        public Vector3D(int x, int y, int z)
-        {
+        public Vector3D(int x, int y, int z) {
             this.x = x;
             this.y = y;
             this.z = z;
@@ -36,15 +28,11 @@ public class LocationUtil {
     public static final int RADIUS = 16;
     public static final Vector3D[] VOLUME;
 
-    static
-    {
+    static {
         List<Vector3D> pos = new ArrayList<Vector3D>();
-        for (int x = -RADIUS; x <= RADIUS; x++)
-        {
-            for (int y = -RADIUS; y <= RADIUS; y++)
-            {
-                for (int z = -RADIUS; z <= RADIUS; z++)
-                {
+        for (int x = -RADIUS; x <= RADIUS; x++) {
+            for (int y = -RADIUS; y <= RADIUS; y++) {
+                for (int z = -RADIUS; z <= RADIUS; z++) {
                     pos.add(new Vector3D(x, y, z));
                 }
             }
@@ -62,55 +50,49 @@ public class LocationUtil {
 
 
     static {
-        HOLLOW_MATERIALS.add(Material.AIR.getId());
-        HOLLOW_MATERIALS.add(Material.SAPLING.getId());
-        HOLLOW_MATERIALS.add(Material.POWERED_RAIL.getId());
-        HOLLOW_MATERIALS.add(Material.DETECTOR_RAIL.getId());
-        HOLLOW_MATERIALS.add(Material.LONG_GRASS.getId());
-        HOLLOW_MATERIALS.add(Material.DEAD_BUSH.getId());
-        HOLLOW_MATERIALS.add(Material.YELLOW_FLOWER.getId());
-        HOLLOW_MATERIALS.add(Material.RED_ROSE.getId());
-        HOLLOW_MATERIALS.add(Material.BROWN_MUSHROOM.getId());
-        HOLLOW_MATERIALS.add(Material.RED_MUSHROOM.getId());
-        HOLLOW_MATERIALS.add(Material.TORCH.getId());
-        HOLLOW_MATERIALS.add(Material.REDSTONE_WIRE.getId());
-        HOLLOW_MATERIALS.add(Material.SEEDS.getId());
-        HOLLOW_MATERIALS.add(Material.SIGN_POST.getId());
-        HOLLOW_MATERIALS.add(Material.WOODEN_DOOR.getId());
-        HOLLOW_MATERIALS.add(Material.LADDER.getId());
-        HOLLOW_MATERIALS.add(Material.RAILS.getId());
-        HOLLOW_MATERIALS.add(Material.WALL_SIGN.getId());
-        HOLLOW_MATERIALS.add(Material.LEVER.getId());
-        HOLLOW_MATERIALS.add(Material.STONE_PLATE.getId());
-        HOLLOW_MATERIALS.add(Material.IRON_DOOR_BLOCK.getId());
-        HOLLOW_MATERIALS.add(Material.WOOD_PLATE.getId());
-        HOLLOW_MATERIALS.add(Material.REDSTONE_TORCH_OFF.getId());
-        HOLLOW_MATERIALS.add(Material.REDSTONE_TORCH_ON.getId());
-        HOLLOW_MATERIALS.add(Material.STONE_BUTTON.getId());
-        HOLLOW_MATERIALS.add(Material.SNOW.getId());
-        HOLLOW_MATERIALS.add(Material.SUGAR_CANE_BLOCK.getId());
-        HOLLOW_MATERIALS.add(Material.DIODE_BLOCK_OFF.getId());
-        HOLLOW_MATERIALS.add(Material.DIODE_BLOCK_ON.getId());
-        HOLLOW_MATERIALS.add(Material.PUMPKIN_STEM.getId());
-        HOLLOW_MATERIALS.add(Material.MELON_STEM.getId());
-        HOLLOW_MATERIALS.add(Material.VINE.getId());
-        HOLLOW_MATERIALS.add(Material.FENCE_GATE.getId());
-        HOLLOW_MATERIALS.add(Material.WATER_LILY.getId());
-        HOLLOW_MATERIALS.add(Material.NETHER_WARTS.getId());
-
-        try // 1.6 update
-        {
-            HOLLOW_MATERIALS.add(Material.CARPET.getId());
-        } catch (java.lang.NoSuchFieldError e) {
-
-        }
+        HOLLOW_MATERIALS.add(Material.AIR);
+        HOLLOW_MATERIALS.add(Material.SAPLING);
+        HOLLOW_MATERIALS.add(Material.POWERED_RAIL);
+        HOLLOW_MATERIALS.add(Material.DETECTOR_RAIL);
+        HOLLOW_MATERIALS.add(Material.LONG_GRASS);
+        HOLLOW_MATERIALS.add(Material.DEAD_BUSH);
+        HOLLOW_MATERIALS.add(Material.YELLOW_FLOWER);
+        HOLLOW_MATERIALS.add(Material.RED_ROSE);
+        HOLLOW_MATERIALS.add(Material.BROWN_MUSHROOM);
+        HOLLOW_MATERIALS.add(Material.RED_MUSHROOM);
+        HOLLOW_MATERIALS.add(Material.TORCH);
+        HOLLOW_MATERIALS.add(Material.REDSTONE_WIRE);
+        HOLLOW_MATERIALS.add(Material.SEEDS);
+        HOLLOW_MATERIALS.add(Material.SIGN_POST);
+        HOLLOW_MATERIALS.add(Material.WOODEN_DOOR);
+        HOLLOW_MATERIALS.add(Material.LADDER);
+        HOLLOW_MATERIALS.add(Material.RAILS);
+        HOLLOW_MATERIALS.add(Material.WALL_SIGN);
+        HOLLOW_MATERIALS.add(Material.LEVER);
+        HOLLOW_MATERIALS.add(Material.STONE_PLATE);
+        HOLLOW_MATERIALS.add(Material.IRON_DOOR_BLOCK);
+        HOLLOW_MATERIALS.add(Material.WOOD_PLATE);
+        HOLLOW_MATERIALS.add(Material.REDSTONE_TORCH_OFF);
+        HOLLOW_MATERIALS.add(Material.REDSTONE_TORCH_ON);
+        HOLLOW_MATERIALS.add(Material.STONE_BUTTON);
+        HOLLOW_MATERIALS.add(Material.SNOW);
+        HOLLOW_MATERIALS.add(Material.SUGAR_CANE_BLOCK);
+        HOLLOW_MATERIALS.add(Material.DIODE_BLOCK_OFF);
+        HOLLOW_MATERIALS.add(Material.DIODE_BLOCK_ON);
+        HOLLOW_MATERIALS.add(Material.PUMPKIN_STEM);
+        HOLLOW_MATERIALS.add(Material.MELON_STEM);
+        HOLLOW_MATERIALS.add(Material.VINE);
+        HOLLOW_MATERIALS.add(Material.FENCE_GATE);
+        HOLLOW_MATERIALS.add(Material.WATER_LILY);
+        HOLLOW_MATERIALS.add(Material.NETHER_WARTS);
+        HOLLOW_MATERIALS.add(Material.CARPET);
     }
 
     static boolean isBlockAboveAir(final World world, final int x, final int y, final int z) {
         if (y > world.getMaxHeight()) {
             return true;
         }
-        return HOLLOW_MATERIALS.contains(world.getBlockAt(x, y - 1, z).getType().getId());
+        return HOLLOW_MATERIALS.contains(world.getBlockAt(x, y - 1, z).getType());
     }
 
     public static boolean isBlockUnsafe(final World world, final int x, final int y, final int z) {
@@ -132,7 +114,7 @@ public class LocationUtil {
         if (below.getType() == Material.BED_BLOCK) {
             return true;
         }
-        if ((!HOLLOW_MATERIALS.contains(world.getBlockAt(x, y, z).getType().getId())) || (!HOLLOW_MATERIALS.contains(world.getBlockAt(x, y + 1, z).getType().getId()))) {
+        if ((!HOLLOW_MATERIALS.contains(world.getBlockAt(x, y, z).getType())) || (!HOLLOW_MATERIALS.contains(world.getBlockAt(x, y + 1, z).getType()))) {
             return true;
         }
         return false;
@@ -226,6 +208,6 @@ public class LocationUtil {
             }
         }
 
-        return y < 0 ? true : false;
+        return y < 0;
     }
 }

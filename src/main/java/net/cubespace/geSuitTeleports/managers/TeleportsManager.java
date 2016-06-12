@@ -31,7 +31,7 @@ public class TeleportsManager {
         } catch ( IOException e ) {
             e.printStackTrace();
         }
-        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.instance );
+        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.INSTANCE);
 
     }
 
@@ -45,7 +45,7 @@ public class TeleportsManager {
         } catch ( IOException e ) {
             e.printStackTrace();
         }
-        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.instance );
+        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.INSTANCE);
     }
 
     public static void tpaHereRequest( CommandSender sender, String targetPlayer ) {
@@ -58,7 +58,7 @@ public class TeleportsManager {
         } catch ( IOException e ) {
             e.printStackTrace();
         }
-        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.instance );
+        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.INSTANCE);
 
     }
 
@@ -71,7 +71,7 @@ public class TeleportsManager {
         } catch ( IOException e ) {
             e.printStackTrace();
         }
-        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.instance );
+        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.INSTANCE);
 
     }
 
@@ -84,7 +84,7 @@ public class TeleportsManager {
         } catch ( IOException e ) {
             e.printStackTrace();
         }
-        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.instance );
+        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.INSTANCE);
 
     }
 
@@ -102,7 +102,7 @@ public class TeleportsManager {
         } catch ( IOException e ) {
             e.printStackTrace();
         }
-        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.instance );
+        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.INSTANCE);
     }
 
     public static void sendTeleportBackLocation( Player p, boolean empty ) {
@@ -119,7 +119,7 @@ public class TeleportsManager {
         } catch ( IOException e ) {
             e.printStackTrace();
         }
-        new PluginMessageTask( b, empty ).runTaskAsynchronously( geSuitTeleports.instance );
+        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.INSTANCE);
     }
 
     public static void sendPlayerBack( CommandSender sender ) {
@@ -133,7 +133,7 @@ public class TeleportsManager {
         } catch ( IOException e ) {
             e.printStackTrace();
         }
-        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.instance );
+        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.INSTANCE);
     }
 
     public static void toggleTeleports( String name ) {
@@ -145,7 +145,7 @@ public class TeleportsManager {
         } catch ( IOException e ) {
             e.printStackTrace();
         }
-        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.instance );
+        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.INSTANCE);
     }
 
     public static void teleportPlayerToPlayer( final String player, String target ) {
@@ -156,7 +156,7 @@ public class TeleportsManager {
         } else {
             pendingTeleports.put( player, t );
             //clear pending teleport if they dont connect
-            Bukkit.getScheduler().runTaskLaterAsynchronously( geSuitTeleports.instance, new Runnable() {
+            Bukkit.getScheduler().runTaskLaterAsynchronously( geSuitTeleports.INSTANCE, new Runnable() {
                 @Override
                 public void run() {
                     if ( pendingTeleports.containsKey( player ) ) {
@@ -186,7 +186,7 @@ public class TeleportsManager {
         } else {
             pendingTeleportLocations.put( player, t );
             //clear pending teleport if they dont connect
-            Bukkit.getScheduler().runTaskLaterAsynchronously( geSuitTeleports.instance, new Runnable() {
+            Bukkit.getScheduler().runTaskLaterAsynchronously( geSuitTeleports.INSTANCE, new Runnable() {
                 @Override
                 public void run() {
                     if ( pendingTeleportLocations.containsKey( player ) ) {
@@ -210,7 +210,7 @@ public class TeleportsManager {
         } catch ( IOException e ) {
             e.printStackTrace();
         }
-        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.instance );
+        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.INSTANCE);
     }
 
     public static void teleportToLocation( String player, String server, String world, Double x, Double y, Double z) {
@@ -228,7 +228,7 @@ public class TeleportsManager {
             e.printStackTrace();
         }
 
-        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.instance );
+        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.INSTANCE);
 
     }
 
@@ -237,10 +237,10 @@ public class TeleportsManager {
         DataOutputStream out = new DataOutputStream( b );
         try {
             out.writeUTF( "SendVersion" );
-            out.writeUTF( ChatColor.RED + "Teleports - " + ChatColor.GOLD + geSuitTeleports.instance.getDescription().getVersion() );
+            out.writeUTF( ChatColor.RED + "Teleports - " + ChatColor.GOLD + geSuitTeleports.INSTANCE.getDescription().getVersion() );
         } catch ( IOException e ) {
             e.printStackTrace();
         }
-        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.instance );
+        new PluginMessageTask( b ).runTaskAsynchronously( geSuitTeleports.INSTANCE);
     }
 }

@@ -6,31 +6,21 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Collection;
 
 public class PluginMessageTask extends BukkitRunnable {
-
     private final ByteArrayOutputStream bytes;
 
-    public PluginMessageTask( ByteArrayOutputStream bytes ) {
+    public PluginMessageTask(ByteArrayOutputStream bytes) {
         this.bytes = bytes;
     }
 
-    public PluginMessageTask( ByteArrayOutputStream b, boolean empty ) {
-        this.bytes = b;
-    }
-
-    @SuppressWarnings("unchecked")
     public void run() {
-        Player[] players = Bukkit.getOnlinePlayers();
-        if ( players.length == 0 ) {
-            return;
+        Collection<? extends Player> onlinePlayers = Bukkit.getOnlinePlayers();
+        if (onlinePlayers.isEmpty()) {
+            geSuitTeleports.INSTANCE.getLogger().info("Tried to send a pluginMessage with an empty server. Cancelling.");
+        } else {
+            onlinePlayers.iterator().next().sendPluginMessage(geSuitTeleports.INSTANCE, "geSuitBans", bytes.toByteArray());
         }
-        Player p = Bukkit.getOnlinePlayers()[0];
-        if ( p == null ) {
-            return;
-        }
-        p.sendPluginMessage( geSuitTeleports.instance, "geSuitTeleport", bytes.toByteArray() );
     }
-
-
 }

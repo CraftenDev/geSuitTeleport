@@ -39,10 +39,10 @@ public class TeleportsMessageListener implements PluginMessageListener {
             }
             if ( name != null ) {
                 Player p = Bukkit.getPlayer( name );
-                p.sendMessage( ChatColor.RED + "Teleports - " + ChatColor.GOLD + geSuitTeleports.instance.getDescription().getVersion() );
+                p.sendMessage( ChatColor.RED + "Teleports - " + ChatColor.GOLD + geSuitTeleports.INSTANCE.getDescription().getVersion() );
             }
             TeleportsManager.sendVersion();
-            Bukkit.getConsoleSender().sendMessage( ChatColor.RED + "Teleports - " + ChatColor.GOLD + geSuitTeleports.instance.getDescription().getVersion() );
+            Bukkit.getConsoleSender().sendMessage( ChatColor.RED + "Teleports - " + ChatColor.GOLD + geSuitTeleports.INSTANCE.getDescription().getVersion() );
         }
     }
 

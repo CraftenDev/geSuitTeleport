@@ -16,11 +16,11 @@ import net.cubespace.geSuitTeleports.listeners.TeleportsListener;
 import net.cubespace.geSuitTeleports.listeners.TeleportsMessageListener;
 
 public class geSuitTeleports extends JavaPlugin {
-    public static geSuitTeleports instance;
+    public static geSuitTeleports INSTANCE;
 
     @Override
     public void onEnable() {
-        instance = this;
+        INSTANCE = this;
         registerListeners();
         registerChannels();
         registerCommands();
